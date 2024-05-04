@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:lisha_s_application1/widgets/app_bar/custom_app_bar.dart';
 import 'package:lisha_s_application1/widgets/app_bar/appbar_leading_image.dart';
 import 'package:lisha_s_application1/widgets/app_bar/appbar_subtitle.dart';
@@ -43,8 +44,8 @@ class InnerVonePage extends StatelessWidget {
           height: SizeUtils.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment(0.5, 0),
-              end: Alignment(0.5, 1),
+              // begin: Alignment(0.5, 0),
+              // end: Alignment(0.5, 1),
               colors: [
                 appTheme.indigoA20000,
                 appTheme.red30082,
@@ -59,78 +60,92 @@ class InnerVonePage extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 4.h, top: 35),
-                                      child: BlocSelector<
-                                          InnerVoneBloc,
-                                          InnerVoneState,
-                                          TextEditingController?>(
-                                        selector: (state) =>
-                                            state.searchController,
-                                        builder: (context, searchController) {
-                                          return CustomSearchView(
-                                            controller: searchController,
-                                            hintText: "msg_search_favorite".tr,
-                                          );
-                                        },
-                                      ),
+                  Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20.h, top: 35, right: 20.h),
+                                    child: BlocSelector<
+                                        InnerVoneBloc,
+                                        InnerVoneState,
+                                        TextEditingController?>(
+                                      selector: (state) =>
+                                          state.searchController,
+                                      builder: (context, searchController) {
+                                        return CustomSearchView(
+                                          controller: searchController,
+                                          hintText: "msg_search_favorite".tr,
+                                        );
+                                      },
                                     ),
-                                    SizedBox(height: 305.v),
-                                    Text(
-                                      "msg_get_it_instantly".tr,
-                                      style:
-                                          CustomTextStyles.titleMediumGray40001,
+                                  ),
+                                  SizedBox(height: 305.v),
+                                  Text(
+                                    "msg_get_it_instantly".tr,
+                                    style:
+                                        CustomTextStyles.titleMediumGray40001,
+                                  ),
+                                  SizedBox(height: 8.v),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 4.h),
+                                    child: _buildLatte(
+                                      context,
+                                      latte: "lbl_latt".tr,
+                                      fortyNine: "lbl_4_9".tr,
+                                      fourHundredFiftyEight: "lbl_458".tr,
+                                      description: "msg_caff_latte_is_a".tr,
+                                      image: ImageConstant.imgRectangle10,
+                                      aDD: "lbl_add".tr,
                                     ),
-                                    SizedBox(height: 8.v),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 4.h),
-                                      child: _buildLatte(
-                                        context,
-                                        latte: "lbl_latt".tr,
-                                        fortyNine: "lbl_4_9".tr,
-                                        fourHundredFiftyEight: "lbl_458".tr,
-                                        description: "msg_caff_latte_is_a".tr,
-                                        image: ImageConstant.imgRectangle10,
-                                        aDD: "lbl_add".tr,
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 4.h),
+                                    child: _buildLatte(
+                                      context,
+                                      latte: "lbl_flat_white".tr,
+                                      fortyNine: "lbl_4_9".tr,
+                                      fourHundredFiftyEight: "lbl_458".tr,
+                                      description: "msg_caff_latte_is_a".tr,
+                                      image: ImageConstant.imgRectangle14,
+                                      aDD: "lbl_add".tr,
                                     ),
-                                  ],
-                                ),
-                              ),
-
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: 4.h,
-                                top: 668.v,
-                              ),
-                              child: _buildLatte(
-                                context,
-                                latte: "lbl_flat_white".tr,
-                                fortyNine: "lbl_4_9".tr,
-                                fourHundredFiftyEight: "lbl_458".tr,
-                                description: "msg_caff_latte_is_a".tr,
-                                image: ImageConstant.imgRectangle14,
-                                aDD: "lbl_add".tr,
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                        ],
+                      ),
 
+                  Container(
+                    margin: EdgeInsets.only(top: 76.v),
+                    padding: EdgeInsets.only(top: 20.h, left: 20.h, right: 195.h),
+                    child: Text(
+                      "Most Popular Beverages",
+                      style:
+                      CustomTextStyles.titleMediumGray40001,
                     ),
 
-                  _buildThirty(context),
-                  _buildInnerVOne(context),
+                  ),
+                  Positioned(
+                    top: 110.v,
+                      child: SingleChildScrollView(
+                        child: Row(
+
+                          children: [
+                            Beverage(imagePath: ImageConstant.imgCoffee21, title: "Hot Cappuchino", description: "Espresso, Steamed Milk", attribute1: "4.9", attribute2: "(458)"),
+                            Beverage(imagePath: ImageConstant.imgCoffee21128x131, title: "Hot Cappuchino", description: "Espresso, Steamed Milk", attribute1: "4.9", attribute2: "(458)"),
+                            Beverage(imagePath: ImageConstant.imgCoffee211, title: "Hot Cappuchino", description: "Espresso, Steamed Milk", attribute1: "4.9", attribute2: "(458)"),
+                          ],
+                        ),
+                      ),
+                  ),
+                  // _buildInnerVOne(context),
                 ],
               ),
             ),
@@ -184,19 +199,7 @@ class InnerVonePage extends StatelessWidget {
     );
   }
 
-  /// Section Widget
-  Widget _buildThirty(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 76.v),
-      padding: EdgeInsets.all(20.h),
-      child: Text(
-        "Most Popular Beverages",
-        style:
-        CustomTextStyles.titleMediumGray40001,
-      ),
 
-    );
-  }
 
   /// Section Widget
   Widget _buildInnerVOne(BuildContext context) {
@@ -248,9 +251,10 @@ class InnerVonePage extends StatelessWidget {
     required String aDD,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.v),
+      padding: EdgeInsets.symmetric(vertical: 11.v),
 
       decoration: BoxDecoration(
+        // border: Border.all(),
         image: DecorationImage(
 
           image: AssetImage(
@@ -334,7 +338,7 @@ class InnerVonePage extends StatelessWidget {
           Container(
             height: 135.v,
             width: 119.h,
-            margin: EdgeInsets.only(top: 12.v),
+            margin: EdgeInsets.only(top: 10.v),
             child: Stack(
               alignment: Alignment.bottomRight,
               children: [

@@ -33,6 +33,8 @@ class AppbarTrailingIconbutton extends StatelessWidget {
           decoration: IconButtonStyleHelper.outlineBlack,
           child: CustomImageView(
             imagePath: ImageConstant.imgThumbsUp,
+            height: 20.adaptSize,
+            width: 20.adaptSize,
           ),
         ),
       ),
